@@ -17,16 +17,23 @@
   <dependencies>
   
   
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+		<!-- spring-webmvc -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-webmvc</artifactId>
 		    <version>${spring.version}</version>
 		</dependency>
+		
+		<!-- spring-webmvc -->
+		<dependency>
+		    <groupId>jstl</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
 		  
   
       <!-- JAVA EE -->
-	<dependency>
+	 <dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>${javaee.version}</version>
