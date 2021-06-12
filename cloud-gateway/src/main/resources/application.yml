@@ -1,0 +1,77 @@
+server:
+   port: 3212
+   
+spring:
+  application:
+    name: GATEWAY-SERVICE
+  cloud:
+    gateway:
+      routes:
+      - id: order-service
+        uri: lb://ORDER-SERVICE
+        predicates:
+          - Path=/order/**
+        filters: 
+          - name: CircuitBreaker
+            args:
+               name: order-service
+               fallbackuri: forward:/orderServiceFallback
+                
+  
+      - id: payment-service
+        uri: lb://PAYMENT-SERVICE
+        predicates:
+          - Path=/payment/**
+        filters: 
+          - name: CircuitBreaker
+            args:
+               name: payment-service
+               fallbackuri: forward:/paymentServiceFallback
+          
+      - id: auth-service
+        uri: lb://auth-SERVICE
+        predicates:
+          - Path=/user/**
+        filters: 
+          - name: CircuitBreaker
+            args:
+               name: auth-service
+               fallbackuri: forward:/authServiceFallback
+   
+     
+management:
+   endpoints:
+     web:
+      exposure:
+        include: hystrix.stream
+ 
+ 
+hystrix:
+   command:
+     fallbackcmd:
+      execution:
+       isolation:
+          thread:
+            timeoutInMillinseconds: 5000
+ 
+ 
+ 
+
+             
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
